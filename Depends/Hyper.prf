@@ -1,0 +1,12 @@
+QT += core
+INCLUDEPATH += $$PWD/../Src/AgHyper
+DEPENDPATH += $$DESTDIR
+
+include($$DEPEND_ROOT/Armadillo.prf)
+
+CONFIG(debug,debug|release) {
+    LIBS += -L$$DESTDIR -lAgHyperd
+}
+CONFIG(release,debug|release) {
+    LIBS += -L$$DESTDIR -lAgHyper
+}

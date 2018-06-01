@@ -1,0 +1,6 @@
+win32-g++: {
+    LIBS += -lopenblas -larmadillo
+}
+linux-g++: {
+    LIBS += -lcblas -larmadillo
+}

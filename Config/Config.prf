@@ -1,0 +1,53 @@
+TARGET_UPPER = $$upper($$TARGET)
+TARGET_LIB_DEFINE = $$join(TARGET_UPPER,,AG,_LIBRARY)
+
+SOURCE_ROOT = $$PWD/../Src
+RESOURCE_ROOT = $$PWD/../Resources
+INCLUDEPATH += $$SOURCE_ROOT
+DEPEND_ROOT = $$PWD/../Depends
+OUTPUT_ROOT = $$shadowed($$PWD/../Output)
+
+CONFIG += \
+    debug_and_release \
+    build_all \
+    c++11
+
+DEFINES += \
+    $$TARGET_LIB_DEFINE \
+    QT_DEPRECATED_WARNINGS \
+    QT_DISABLE_DEPRECATED_BEFORE=0x060000
+
+TARGET = $$join(TARGET,,Ag,)
+
+CONFIG(debug,debug|release) {
+    DEFINES += AG_DEBUG
+    TARGET = $$join(TARGET,,,d)
+    BUILD_TYPE = "Debug"
+}
+
+CONFIG(release, debug|release) {
+    DEFINES += AG_RELEASE
+    BUILD_TYPE = "Release"
+}
+
+win32-msvc: {
+    DEFINES += AG_OS_WIN
+    DEFINES += AG_WIN_MSVC
+    COMPILER_TYPE = "win32-msvc"
+}
+
+win32-g++: {
+    DEFINES += AG_OS_WIN
+    DEFINES += AG_WIN_GCC
+    COMPILER_TYPE = "win32-g++"
+}
+
+linux-g++: {
+    DEFINES += AG_OS_LINUX
+    DEFINES += AG_LINUX_GCC
+    COMPILER_TYPE = "linux-g++"
+}
+
+DESTDIR = $$OUTPUT_ROOT/$$BUILD_TYPE/$$COMPILER_TYPE
+
+DEPENDPATH += $$DESTDIR
