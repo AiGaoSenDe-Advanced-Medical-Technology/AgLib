@@ -58,7 +58,7 @@ Output:
 // spectrum at point(300, 300)
 arma::vec spectrum = hyperImage.spectrum(300, 300)
 arma::vec spectrum = hyperImage.spectrum(QPoint(300, 300));
-// average spectrum in rectangle, topleft = (300, 300), width = 3, height = 4
+// average spectrum in rectangle, center = (300, 300), halfWidth = 3, halfHeight = 4
 arma::vec spectrum = hyperImage.spectrum(300, 300, 3, 4);
 arma::vec spectrum = hyperImage.spectrum(QPoint(300, 300), QSize(3, 4));
     
